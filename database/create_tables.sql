@@ -14,6 +14,12 @@ CREATE TYPE COURSE_TYPE AS ENUM (
     'Спецкурс'
 );
 
+CREATE TYPE LISTENERS_TYPE AS ENUM (
+    'Студент',
+    'Группа',
+    'Поток'
+);
+
 CREATE TABLE IF NOT EXISTS streams (
     stream_number INT PRIMARY KEY CONSTRAINT positive_stream CHECK (stream_number > 0)
 );
@@ -34,11 +40,15 @@ CREATE TABLE IF NOT EXISTS courses (
     course_id SERIAL PRIMARY KEY,
     course_name VARCHAR(40) NOT NULL, 
     coverage COURSE_TYPE NOT NULL,
-    streams INT[],
-    groups INT[],
-    students INT[],
     intensity INT CONSTRAINT correct_intensity CHECK ((intensity > 0) && (intensity < 8)) NOT NULL,
     study_year INT CONSTRAINT correct_course_study_year CHECK ((study_year > 0) && (study_year < 7))
+);
+
+CREATE TABLE IF NOT EXISTS listeners (
+    listener_type LISTENERS_TYPE NOT NULL,
+    id INT NOT_NULL,
+    course INT REFERENCES courses(course_id) NOT NULL ON DELETE CASCADE
+    PRIMARY KEY (listener_type, id, course)
 );
 
 CREATE TABLE IF NOT EXISTS teachers (
