@@ -5,7 +5,7 @@ INSERT INTO streams (stream_number) VALUES
 (2), 
 (3);
 
-INSERT INTO groups (group_number, stream) VALUES
+INSERT INTO study_groups (group_number, stream) VALUES
 (101, 1), 
 (102, 2), 
 (103, 3),
@@ -13,7 +13,7 @@ INSERT INTO groups (group_number, stream) VALUES
 (202, 2), 
 (203, 3);
 
-INSERT INTO students (full_name, study_year, group) VALUES
+INSERT INTO students (full_name, study_year, group_number) VALUES
 ('Иванов Александр Дмитриевич',      1, 101),
 ('Попова Елена Николаевна',          1, 101),
 ('Никифоров Алексей Михайлович',     1, 102),
@@ -41,7 +41,7 @@ INSERT INTO courses (course_name, coverage, intensity, study_year) VALUES
 ('Английский язык',            'Спецкурс',  1, NULL),
 ('Основы кибернетики',         'Спецкурс',  1, NULL);
 
-INSERT INTO listeners (listener_type, id, course) VALUES
+INSERT INTO listeners (listener_type, listener_id, course) VALUES
 ('Поток',   1,   1),
 ('Поток',   2,   1),
 ('Поток',   3,   2),
@@ -93,7 +93,7 @@ INSERT INTO classrooms (classroom_number, capacity) VALUES
 (7, 40),
 (8, 30);
 
-INSERT INTO lessons (teacher, course, classroom, day, lesson_time) VALUES
+INSERT INTO lessons (teacher, course, classroom, week_day, lesson_time) VALUES
 (1, 1,  1, 'Понедельник', TIME '08:45:00'),
 (1, 7,  2, 'Вторник',     TIME '10:30:00'),
 (1, 6,  3, 'Среда',       TIME '12:50:00'),
