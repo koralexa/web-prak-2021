@@ -8,7 +8,6 @@ import util.HibernateSessionFactoryUtil;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.sql.SQLException;
 import java.util.Collection;
