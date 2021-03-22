@@ -17,7 +17,7 @@ public class TeacherTests {
 
         Factory.getInstance().getTeacherDAO().insertTeacher(teacher);
         Teacher inserted_teacher = Factory.getInstance().getTeacherDAO().getTeacherById(teacher.getTeacher_id());
-        Assert.assertTrue(teacher.isEqual(inserted_teacher), "TEST FAILED: insertTeacher: objects aren't equal");
+        Assert.assertTrue(teacher.isEqual(inserted_teacher), "insertTeacher: objects aren't equal");
         Factory.getInstance().getTeacherDAO().deleteTeacher(teacher);
     }
 
@@ -30,7 +30,7 @@ public class TeacherTests {
         teacher.setFull_name("Петров Петр Петрович");
         Factory.getInstance().getTeacherDAO().updateTeacher(teacher);
         Teacher updated_teacher = Factory.getInstance().getTeacherDAO().getTeacherById(teacher.getTeacher_id());
-        Assert.assertTrue(teacher.isEqual(updated_teacher), "TEST FAILED: updateTeacher: objects aren't equal");
+        Assert.assertTrue(teacher.isEqual(updated_teacher), "updateTeacher: objects aren't equal");
         Factory.getInstance().getTeacherDAO().deleteTeacher(teacher);
     }
 
@@ -42,7 +42,7 @@ public class TeacherTests {
         Factory.getInstance().getTeacherDAO().insertTeacher(teacher);
         Factory.getInstance().getTeacherDAO().deleteTeacher(teacher);
         Teacher deleted_teacher = Factory.getInstance().getTeacherDAO().getTeacherById(teacher.getTeacher_id());
-        Assert.assertNull(deleted_teacher, "TEST FAILED: deleteTeacher: object != null");
+        Assert.assertNull(deleted_teacher, "deleteTeacher: object != null");
     }
 
     @Test
@@ -63,9 +63,9 @@ public class TeacherTests {
                     break;
                 }
             }
-            Assert.assertTrue(selected, "TEST FAILED: getAllTeachers: required object not found");
+            Assert.assertTrue(selected, "getAllTeachers: required object not found");
         }
-        Assert.assertEquals(teachers.size(), selected_teachers.size(), "TEST FAILED: getAllTeachers: wrong number of objects");
+        Assert.assertEquals(teachers.size(), selected_teachers.size(), "getAllTeachers: wrong number of objects");
     }
 
     @Test
@@ -84,9 +84,9 @@ public class TeacherTests {
                     break;
                 }
             }
-            Assert.assertTrue(selected, "TEST FAILED: getCoursesByTeacherFound: required object not found");
+            Assert.assertTrue(selected, "getCoursesByTeacherFound: required object not found");
         }
-        Assert.assertEquals(courses.size(), selected_courses.size(), "TEST FAILED: getCoursesByTeacherFound: wrong number of objects");
+        Assert.assertEquals(courses.size(), selected_courses.size(), "getCoursesByTeacherFound: wrong number of objects");
     }
 
     @Test
@@ -95,7 +95,7 @@ public class TeacherTests {
         teacher.setFull_name("Иванов Иван Иванович");
         Factory.getInstance().getTeacherDAO().insertTeacher(teacher);
         Collection<Course> selected_courses = Factory.getInstance().getCourseDAO().getCoursesByTeacher(teacher);
-        Assert.assertEquals(selected_courses.size(), 0, "TEST FAILED: getCoursesByTeacherNotFound: wrong number of objects");
+        Assert.assertEquals(selected_courses.size(), 0, "getCoursesByTeacherNotFound: wrong number of objects");
         Factory.getInstance().getTeacherDAO().deleteTeacher(teacher);
     }
 }

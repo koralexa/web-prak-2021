@@ -16,7 +16,7 @@ public class PassedCourseTests {
 
         Factory.getInstance().getPassedCourseDAO().insertPassedCourse(passed_course);
         PassedCourse inserted_passed_course = Factory.getInstance().getPassedCourseDAO().getPassedCourseById(passed_course.getPassed_course_id());
-        Assert.assertTrue(passed_course.isEqual(inserted_passed_course), "TEST FAILED: insertPassedCourse: objects aren't equal");
+        Assert.assertTrue(passed_course.isEqual(inserted_passed_course), "insertPassedCourse: objects aren't equal");
         Factory.getInstance().getPassedCourseDAO().deletePassedCourse(passed_course);
     }
 
@@ -31,7 +31,7 @@ public class PassedCourseTests {
         passed_course.setStudy_year(2L);
         Factory.getInstance().getPassedCourseDAO().updatePassedCourse(passed_course);
         PassedCourse updated_passed_course = Factory.getInstance().getPassedCourseDAO().getPassedCourseById(passed_course.getPassed_course_id());
-        Assert.assertTrue(passed_course.isEqual(updated_passed_course), "TEST FAILED: updatePassedCourse: objects aren't equal");
+        Assert.assertTrue(passed_course.isEqual(updated_passed_course), "updatePassedCourse: objects aren't equal");
         Factory.getInstance().getPassedCourseDAO().deletePassedCourse(passed_course);
     }
 
@@ -45,7 +45,7 @@ public class PassedCourseTests {
         Factory.getInstance().getPassedCourseDAO().insertPassedCourse(passed_course);
         Factory.getInstance().getPassedCourseDAO().deletePassedCourse(passed_course);
         PassedCourse deleted_passed_course = Factory.getInstance().getPassedCourseDAO().getPassedCourseById(passed_course.getPassed_course_id());
-        Assert.assertNull(deleted_passed_course, "TEST FAILED: deletePassedCourse: object != null");
+        Assert.assertNull(deleted_passed_course, "deletePassedCourse: object != null");
     }
 }
 

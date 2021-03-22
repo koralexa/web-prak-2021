@@ -24,7 +24,7 @@ public class StudentTests {
 
         Factory.getInstance().getStudentDAO().insertStudent(student);
         Student inserted_student = Factory.getInstance().getStudentDAO().getStudentById(student.getStudent_id());
-        Assert.assertTrue(student.isEqual(inserted_student), "TEST FAILED: insertStudent: objects aren't equal");
+        Assert.assertTrue(student.isEqual(inserted_student), "insertStudent: objects aren't equal");
         Factory.getInstance().getStudentDAO().deleteStudent(student);
     }
 
@@ -44,7 +44,7 @@ public class StudentTests {
         student.setFull_name("Петров Петр Петрович");
         Factory.getInstance().getStudentDAO().updateStudent(student);
         Student updated_student = Factory.getInstance().getStudentDAO().getStudentById(student.getStudent_id());
-        Assert.assertTrue(student.isEqual(updated_student), "TEST FAILED: updateStudent: objects aren't equal");
+        Assert.assertTrue(student.isEqual(updated_student), "updateStudent: objects aren't equal");
         Factory.getInstance().getStudentDAO().deleteStudent(student);
     }
 
@@ -63,7 +63,7 @@ public class StudentTests {
         Factory.getInstance().getStudentDAO().insertStudent(student);
         Factory.getInstance().getStudentDAO().deleteStudent(student);
         Student deleted_student = Factory.getInstance().getStudentDAO().getStudentById(student.getStudent_id());
-        Assert.assertNull(deleted_student, "TEST FAILED: deleteStudent: object != null");
+        Assert.assertNull(deleted_student, "deleteStudent: object != null");
     }
 
     @Test
@@ -91,9 +91,9 @@ public class StudentTests {
                     break;
                 }
             }
-            Assert.assertTrue(selected, "TEST FAILED: getAllStudents: required object not found");
+            Assert.assertTrue(selected, "getAllStudents: required object not found");
         }
-        Assert.assertEquals(students.size(), selected_students.size(), "TEST FAILED: getAllStudents: wrong number of objects");
+        Assert.assertEquals(students.size(), selected_students.size(), "getAllStudents: wrong number of objects");
     }
 
     @Test
@@ -115,15 +115,15 @@ public class StudentTests {
                     break;
                 }
             }
-            Assert.assertTrue(selected, "TEST FAILED: getStudentsByStudyYearFound: required object not found");
+            Assert.assertTrue(selected, "getStudentsByStudyYearFound: required object not found");
         }
-        Assert.assertEquals(students.size(), selected_students.size(), "TEST FAILED: getStudentsByStudyYearFound: wrong number of objects");
+        Assert.assertEquals(students.size(), selected_students.size(), "getStudentsByStudyYearFound: wrong number of objects");
     }
 
     @Test
     public void getStudentsByStudyYearNotFound() throws SQLException {
         Collection<Student> selected_students = Factory.getInstance().getStudentDAO().getStudentsByStudyYear(8L);
-        Assert.assertEquals(selected_students.size(), 0, "TEST FAILED: getStudentsByStudyYearNotFound: wrong number of objects");
+        Assert.assertEquals(selected_students.size(), 0, "getStudentsByStudyYearNotFound: wrong number of objects");
     }
 
     @Test
@@ -143,9 +143,9 @@ public class StudentTests {
                     break;
                 }
             }
-            Assert.assertTrue(selected, "TEST FAILED: getStudentsByStudyGroupFound: required object not found");
+            Assert.assertTrue(selected, "getStudentsByStudyGroupFound: required object not found");
         }
-        Assert.assertEquals(students.size(), selected_students.size(), "TEST FAILED: getStudentsByStudyGroupFound: wrong number of objects");
+        Assert.assertEquals(students.size(), selected_students.size(), "getStudentsByStudyGroupFound: wrong number of objects");
     }
 
     @Test
@@ -154,7 +154,7 @@ public class StudentTests {
         group.setGroup_number(403L);
 
         Collection<Student> selected_students = Factory.getInstance().getStudentDAO().getStudentsByStudyGroup(group);
-        Assert.assertEquals(selected_students.size(), 0, "TEST FAILED: getStudentsByStudyGroupNotFound: wrong number of objects");
+        Assert.assertEquals(selected_students.size(), 0, "getStudentsByStudyGroupNotFound: wrong number of objects");
     }
 
     @Test
@@ -176,9 +176,9 @@ public class StudentTests {
                     break;
                 }
             }
-            Assert.assertTrue(selected, "TEST FAILED: getStudentByStudyYearFound: required object not found");
+            Assert.assertTrue(selected, "getStudentByStudyYearFound: required object not found");
         }
-        Assert.assertEquals(students.size(), selected_students.size(), "TEST FAILED: getStudentsByStreamFound: wrong number of objects");
+        Assert.assertEquals(students.size(), selected_students.size(), "getStudentsByStreamFound: wrong number of objects");
     }
 
     @Test
@@ -187,6 +187,6 @@ public class StudentTests {
         stream.setStream_number(5L);
 
         Collection<Student> selected_students = Factory.getInstance().getStudentDAO().getStudentsByStream(stream);
-        Assert.assertEquals(selected_students.size(), 0, "TEST FAILED: getStudentsByStreamNotFound: wrong number of objects");
+        Assert.assertEquals(selected_students.size(), 0, "getStudentsByStreamNotFound: wrong number of objects");
     }
 }

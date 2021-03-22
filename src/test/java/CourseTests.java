@@ -21,7 +21,7 @@ public class CourseTests {
 
         Factory.getInstance().getCourseDAO().insertCourse(course);
         Course inserted_course = Factory.getInstance().getCourseDAO().getCourseById(course.getCourse_id());
-        Assert.assertTrue(course.isEqual(inserted_course), "TEST FAILED: insertCourse: objects aren't equal");
+        Assert.assertTrue(course.isEqual(inserted_course), "insertCourse: objects aren't equal");
         Factory.getInstance().getCourseDAO().deleteCourse(course);
     }
 
@@ -38,7 +38,7 @@ public class CourseTests {
         course.setTeacher(Factory.getInstance().getTeacherDAO().getTeacherById(3L));
         Factory.getInstance().getCourseDAO().updateCourse(course);
         Course updated_course = Factory.getInstance().getCourseDAO().getCourseById(course.getCourse_id());
-        Assert.assertTrue(course.isEqual(updated_course), "TEST FAILED: updateCourse: objects aren't equal");
+        Assert.assertTrue(course.isEqual(updated_course), "updateCourse: objects aren't equal");
         Factory.getInstance().getCourseDAO().deleteCourse(course);
     }
 
@@ -54,7 +54,7 @@ public class CourseTests {
         Factory.getInstance().getCourseDAO().insertCourse(course);
         Factory.getInstance().getCourseDAO().deleteCourse(course);
         Course deleted_course = Factory.getInstance().getCourseDAO().getCourseById(course.getCourse_id());
-        Assert.assertNull(deleted_course, "TEST FAILED: deleteCourse: object != null");
+        Assert.assertNull(deleted_course, "deleteCourse: object != null");
     }
 
     @Test
@@ -82,9 +82,9 @@ public class CourseTests {
                     break;
                 }
             }
-            Assert.assertTrue(selected, "TEST FAILED: getAllCourses: required object not found");
+            Assert.assertTrue(selected, "getAllCourses: required object not found");
         }
-        Assert.assertEquals(courses.size(), selected_courses.size(), "TEST FAILED: getAllCourses: wrong number of objects");
+        Assert.assertEquals(courses.size(), selected_courses.size(), "getAllCourses: wrong number of objects");
     }
 
     @Test
@@ -103,9 +103,9 @@ public class CourseTests {
                     break;
                 }
             }
-            Assert.assertTrue(selected, "TEST FAILED: getCoursesByTeacherFound: required object not found");
+            Assert.assertTrue(selected, "getCoursesByTeacherFound: required object not found");
         }
-        Assert.assertEquals(courses.size(), selected_courses.size(), "TEST FAILED: getCoursesByTeacherFound: wrong number of objects");
+        Assert.assertEquals(courses.size(), selected_courses.size(), "getCoursesByTeacherFound: wrong number of objects");
     }
 
     @Test
@@ -114,7 +114,7 @@ public class CourseTests {
         teacher.setFull_name("Иванов Иван Иванович");
         Factory.getInstance().getTeacherDAO().insertTeacher(teacher);
         Collection<Course> selected_courses = Factory.getInstance().getCourseDAO().getCoursesByTeacher(teacher);
-        Assert.assertEquals(selected_courses.size(), 0, "TEST FAILED: getCoursesByTeacherNotFound: wrong number of objects");
+        Assert.assertEquals(selected_courses.size(), 0, "getCoursesByTeacherNotFound: wrong number of objects");
         Factory.getInstance().getTeacherDAO().deleteTeacher(teacher);
     }
 }

@@ -18,7 +18,7 @@ public class ClassroomTests {
 
         Factory.getInstance().getClassroomDAO().insertClassroom(classroom);
         Classroom inserted_classroom = Factory.getInstance().getClassroomDAO().getClassroomById(classroom.getClassroom_number());
-        Assert.assertTrue(classroom.isEqual(inserted_classroom), "TEST FAILED: insertClassroom: objects aren't equal");
+        Assert.assertTrue(classroom.isEqual(inserted_classroom), "insertClassroom: objects aren't equal");
         Factory.getInstance().getClassroomDAO().deleteClassroom(classroom);
     }
 
@@ -32,7 +32,7 @@ public class ClassroomTests {
         classroom.setCapacity(50L);
         Factory.getInstance().getClassroomDAO().updateClassroom(classroom);
         Classroom updated_classroom = Factory.getInstance().getClassroomDAO().getClassroomById(classroom.getClassroom_number());
-        Assert.assertTrue(classroom.isEqual(updated_classroom), "TEST FAILED: updateClassroom: objects aren't equal");
+        Assert.assertTrue(classroom.isEqual(updated_classroom), "updateClassroom: objects aren't equal");
         Factory.getInstance().getClassroomDAO().deleteClassroom(classroom);
     }
 
@@ -45,7 +45,7 @@ public class ClassroomTests {
         Factory.getInstance().getClassroomDAO().insertClassroom(classroom);
         Factory.getInstance().getClassroomDAO().deleteClassroom(classroom);
         Classroom deleted_classroom = Factory.getInstance().getClassroomDAO().getClassroomById(classroom.getClassroom_number());
-        Assert.assertNull(deleted_classroom, "TEST FAILED: deleteClassroom: object != null");
+        Assert.assertNull(deleted_classroom, "deleteClassroom: object != null");
     }
 
     @Test
@@ -69,9 +69,9 @@ public class ClassroomTests {
                     break;
                 }
             }
-            Assert.assertTrue(selected, "TEST FAILED: getAllClassrooms: required object not found");
+            Assert.assertTrue(selected, "getAllClassrooms: required object not found");
         }
-        Assert.assertEquals(classrooms.size(), selected_classrooms.size(), "TEST FAILED: getAllClassrooms: wrong number of objects");
+        Assert.assertEquals(classrooms.size(), selected_classrooms.size(), "getAllClassrooms: wrong number of objects");
     }
 
     @Test
@@ -93,15 +93,15 @@ public class ClassroomTests {
                     break;
                 }
             }
-            Assert.assertTrue(selected, "TEST FAILED: getClassroomsByMinCapacityFound: required object not found");
+            Assert.assertTrue(selected, "getClassroomsByMinCapacityFound: required object not found");
         }
-        Assert.assertEquals(classrooms.size(), selected_classrooms.size(), "TEST FAILED: getClassroomsByMinCapacityFound: wrong number of objects");
+        Assert.assertEquals(classrooms.size(), selected_classrooms.size(), "getClassroomsByMinCapacityFound: wrong number of objects");
     }
 
     @Test
     public void getClassroomsByMinCapacityNotFound() throws SQLException {
         Collection<Classroom> selected_classrooms = Factory.getInstance().getClassroomDAO().getClassroomsByMinCapacity(150L);
-        Assert.assertEquals(selected_classrooms.size(), 0, "TEST FAILED: getClassroomsByMinCapacityNotFound: wrong number of objects");
+        Assert.assertEquals(selected_classrooms.size(), 0, "getClassroomsByMinCapacityNotFound: wrong number of objects");
     }
 
     @Test
@@ -121,15 +121,15 @@ public class ClassroomTests {
                     break;
                 }
             }
-            Assert.assertTrue(selected, "TEST FAILED: getClassroomsByMaxCapacityFound: required object not found");
+            Assert.assertTrue(selected, "getClassroomsByMaxCapacityFound: required object not found");
         }
-        Assert.assertEquals(classrooms.size(), selected_classrooms.size(), "TEST FAILED: getClassroomsByMaxCapacityFound: wrong number of objects");
+        Assert.assertEquals(classrooms.size(), selected_classrooms.size(), "getClassroomsByMaxCapacityFound: wrong number of objects");
     }
 
     @Test
     public void getClassroomsByMaxCapacityNotFound() throws SQLException {
         Collection<Classroom> selected_classrooms = Factory.getInstance().getClassroomDAO().getClassroomsByMaxCapacity(10L);
-        Assert.assertEquals(selected_classrooms.size(), 0, "TEST FAILED: getClassroomsByMaxCapacityNotFound: wrong number of objects");
+        Assert.assertEquals(selected_classrooms.size(), 0, "getClassroomsByMaxCapacityNotFound: wrong number of objects");
     }
 }
 
