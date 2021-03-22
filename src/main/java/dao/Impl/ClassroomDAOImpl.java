@@ -36,7 +36,7 @@ public class ClassroomDAOImpl implements ClassroomDAO {
     public Collection<Classroom> getClassroomsByMinCapacity(Long min) throws SQLException {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String query_string = "select c from Classroom c where (c.capacity >= " + min + ") order by c.classroom_number";
+        String query_string = "select c from Classroom c where c.capacity >= " + min + " order by c.classroom_number";
         Query query = session.createQuery(query_string);
         List<Classroom> classrooms = (List<Classroom>)query.list();
         session.getTransaction().commit();
@@ -49,7 +49,7 @@ public class ClassroomDAOImpl implements ClassroomDAO {
     public Collection<Classroom> getClassroomsByMaxCapacity(Long max) throws SQLException {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String query_string = "select c from Classroom c where (c.capacity <= " + max + ") order by c.classroom_number";
+        String query_string = "select c from Classroom c where c.capacity <= " + max + " order by c.classroom_number";
         Query query = session.createQuery(query_string);
         List<Classroom> classrooms = (List<Classroom>)query.list();
         session.getTransaction().commit();

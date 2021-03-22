@@ -37,7 +37,7 @@ public class CourseDAOImpl implements CourseDAO {
     public Collection<Course> getCoursesByTeacher(Teacher teacher) throws SQLException {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String query_string = "select c from Course c where (c.teacher.teacher_id = " + teacher.getTeacher_id() + ") order by c.course_name";
+        String query_string = "select c from Course c where c.teacher.teacher_id = " + teacher.getTeacher_id() + " order by c.course_name";
         Query query = session.createQuery(query_string);
         List<Course> courses = (List<Course>)query.list();
         session.getTransaction().commit();

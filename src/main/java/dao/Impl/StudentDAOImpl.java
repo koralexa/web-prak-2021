@@ -17,7 +17,7 @@ public class StudentDAOImpl implements StudentDAO {
     public Collection<Student> getAllStudents() throws SQLException {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        Query query = session.createQuery("select s from Student s order by (s.group.stream.stream_number, s.group.group_number, s.full_name)");
+        Query query = session.createQuery("select s from Student s order by s.group.stream.stream_number, s.group.group_number, s.full_name");
         List<Student> students = (List<Student>)query.list();
         session.getTransaction().commit();
         if (session != null && session.isOpen()) {
@@ -38,7 +38,7 @@ public class StudentDAOImpl implements StudentDAO {
     public Collection<Student> getStudentsByStudyYear(Long study_year) throws SQLException {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String query_string = "select s from Student s where (s.study_year = " + study_year + ") order by (s.group.stream.stream_number, s.group.group_number, s.full_name)";
+        String query_string = "select s from Student s where s.study_year = " + study_year + " order by s.group.stream.stream_number, s.group.group_number, s.full_name";
         Query query = session.createQuery(query_string);
         List<Student> students = (List<Student>)query.list();
         session.getTransaction().commit();
@@ -51,7 +51,7 @@ public class StudentDAOImpl implements StudentDAO {
     public Collection<Student> getStudentsByStudyGroup(StudyGroup group) throws SQLException {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String query_string = "select s from Student s where (s.group.group_number = " + group.getGroup_number() + ") order by (s.group.stream.stream_number, s.group.group_number, s.full_name)";
+        String query_string = "select s from Student s where s.group.group_number = " + group.getGroup_number() + " order by s.group.stream.stream_number, s.group.group_number, s.full_name";
         Query query = session.createQuery(query_string);
         List<Student> students = (List<Student>)query.list();
         session.getTransaction().commit();
@@ -64,7 +64,7 @@ public class StudentDAOImpl implements StudentDAO {
     public Collection<Student> getStudentsByStream(Stream stream) throws SQLException {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String query_string = "select s from Student s where (s.group.stream.stream_number = " + stream.getStream_number() + ") order by (s.group.stream.stream_number, s.group.group_number, s.full_name)";
+        String query_string = "select s from Student s where s.group.stream.stream_number = " + stream.getStream_number() + " order by s.group.stream.stream_number, s.group.group_number, s.full_name";
         Query query = session.createQuery(query_string);
         List<Student> students = (List<Student>)query.list();
         session.getTransaction().commit();

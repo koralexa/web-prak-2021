@@ -21,7 +21,7 @@ public class LessonDAOImpl implements LessonDAO {
     public Collection<Lesson> getAllLessons() throws SQLException {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        Query query = session.createQuery("select l from Lesson l order by (l.week_day, l.lesson_time)");
+        Query query = session.createQuery("select l from Lesson l order by l.week_day, l.lesson_time");
         List<Lesson> lessons = (List<Lesson>)query.list();
         session.getTransaction().commit();
         if (session != null && session.isOpen()) {
@@ -42,7 +42,7 @@ public class LessonDAOImpl implements LessonDAO {
     public Collection<Lesson> getLessonsByTeacher(Teacher teacher) throws SQLException {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String query_string = "select l from Lesson l where (l.course.teacher.teacher_id = " + teacher.getTeacher_id() + ") order by (l.week_day, l.lesson_time)";
+        String query_string = "select l from Lesson l where l.course.teacher.teacher_id = " + teacher.getTeacher_id() + " order by l.week_day, l.lesson_time";
         Query query = session.createQuery(query_string);
         List<Lesson> lessons = (List<Lesson>)query.list();
         session.getTransaction().commit();
@@ -82,7 +82,7 @@ public class LessonDAOImpl implements LessonDAO {
                 }
             }
         }
-        String query_string = "select l from Lesson l where (l.course in (:suitable_courses)) order by (l.week_day, l.lesson_time)";
+        String query_string = "select l from Lesson l where l.course in (:suitable_courses) order by l.week_day, l.lesson_time";
         Query query = session.createQuery(query_string);
         query.setParameter("suitable_courses", suitable_courses);
         List<Lesson> lessons = (List<Lesson>)query.list();
@@ -96,7 +96,7 @@ public class LessonDAOImpl implements LessonDAO {
     public Collection<Lesson> getLessonsByClassroom(Classroom classroom) throws SQLException {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String query_string = "select l from Lesson l where (l.classroom.classroom_number = " + classroom.getClassroom_number() + ") order by (l.week_day, l.lesson_time)";
+        String query_string = "select l from Lesson l where l.classroom.classroom_number = " + classroom.getClassroom_number() + " order by l.week_day, l.lesson_time";
         Query query = session.createQuery(query_string);
         List<Lesson> lessons = (List<Lesson>)query.list();
         session.getTransaction().commit();
@@ -109,7 +109,7 @@ public class LessonDAOImpl implements LessonDAO {
     public Collection<Lesson> getLessonsByDay(Long day) throws SQLException {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String query_string = "select l from Lesson l where (l.week_day = " + day + ") order by (l.week_day, l.lesson_time)";
+        String query_string = "select l from Lesson l where l.week_day = " + day + " order by l.week_day, l.lesson_time";
         Query query = session.createQuery(query_string);
         List<Lesson> lessons = (List<Lesson>)query.list();
         session.getTransaction().commit();
