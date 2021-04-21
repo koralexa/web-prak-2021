@@ -10,12 +10,12 @@ import classes.Listener;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 import util.HibernateSessionFactoryUtil;
 
 import java.util.*;
 
 import java.sql.SQLException;
-
 
 public class LessonDAOImpl implements LessonDAO {
     public Collection<Lesson> getAllLessons() throws SQLException {

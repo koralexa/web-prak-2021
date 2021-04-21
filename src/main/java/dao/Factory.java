@@ -7,7 +7,9 @@ public class Factory {
     private static CourseDAO courseDAO = null;
     private static LessonDAO lessonDAO = null;
     private static PassedCourseDAO passed_courseDAO = null;
-    private static TeacherDAO teacherDAO;
+    private static TeacherDAO teacherDAO = null;
+    private static StudyGroupDAO study_groupDAO = null;
+    private static StreamDAO streamDAO = null;
 
     private static Factory instance = null;
 
@@ -58,5 +60,19 @@ public class Factory {
             teacherDAO = new TeacherDAOImpl();
         }
         return teacherDAO;
+    }
+
+    public StudyGroupDAO getStudyGroupDAO() {
+        if (study_groupDAO == null) {
+            study_groupDAO = new StudyGroupDAOImpl();
+        }
+        return study_groupDAO;
+    }
+
+    public StreamDAO getStreamDAO() {
+        if (streamDAO == null) {
+            streamDAO = new StreamDAOImpl();
+        }
+        return streamDAO;
     }
 }

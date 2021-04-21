@@ -4,6 +4,7 @@ import classes.Stream;
 import classes.StudyGroup;
 import dao.StudentDAO;
 import classes.Student;
+import org.springframework.stereotype.Repository;
 import util.HibernateSessionFactoryUtil;
 
 import org.hibernate.Session;

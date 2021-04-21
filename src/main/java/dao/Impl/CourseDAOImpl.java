@@ -3,6 +3,7 @@ package dao.Impl;
 import classes.*;
 import dao.CourseDAO;
 import classes.Course;
+import org.springframework.stereotype.Repository;
 import util.HibernateSessionFactoryUtil;
 
 import org.hibernate.Session;

@@ -1,0 +1,23 @@
+body {
+    background: #f2faff;
+    text-align: center;
+}
+
+h2 {
+    color: red;
+    text-align: center;
+    font: bold 100% Georgia, serif;
+    font-size: 4em;
+}
+
+a {
+    margin-top: 1em;
+    border: 1px solid #007ecc;
+    border-radius: 10px;
+    color: #f2faff;
+    padding: 0.5em 2em;
+    font: bold 100% Georgia, serif;
+    font-size: 1em;
+    background-color: #007ecc;
+    text-decoration-line: none;
+}

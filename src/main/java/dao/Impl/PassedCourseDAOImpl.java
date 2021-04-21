@@ -3,6 +3,7 @@ import classes.*;
 import dao.*;
 
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 import util.HibernateSessionFactoryUtil;
 
 import java.sql.SQLException;

@@ -4,6 +4,7 @@ import classes.Teacher;
 import dao.TeacherDAO;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 import util.HibernateSessionFactoryUtil;
 
 import java.sql.SQLException;
