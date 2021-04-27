@@ -33,16 +33,19 @@ tr {
     border: 1px solid #000000;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    line-height: 2em;
 }
 
 td {
     border: 1px solid #000000;
     font-size: 1em;
+    min-height: 2em;
 }
 
 th {
     border: 1px solid #000000;
     font-size: 1em;
+    min-height: 2em;
 }
 
 #groupL, #yearL, #streamL, #minL, #maxL, #teacherL, #studentL, #classroomL, #dayL {

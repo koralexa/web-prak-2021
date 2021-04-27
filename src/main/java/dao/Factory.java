@@ -10,6 +10,7 @@ public class Factory {
     private static TeacherDAO teacherDAO = null;
     private static StudyGroupDAO study_groupDAO = null;
     private static StreamDAO streamDAO = null;
+    private static ListenerDAO listenerDAO = null;
 
     private static Factory instance = null;
 
@@ -74,5 +75,12 @@ public class Factory {
             streamDAO = new StreamDAOImpl();
         }
         return streamDAO;
+    }
+
+    public ListenerDAO getListenerDAO() {
+        if (listenerDAO == null) {
+            listenerDAO = new ListenerDAOImpl();
+        }
+        return listenerDAO;
     }
 }

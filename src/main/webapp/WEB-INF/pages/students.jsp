@@ -32,7 +32,7 @@
         <c:forEach var="student" items="${studentsList}">
             <tr>
                 <td>${student.student_id}</td>
-                <td>${student.full_name}</td>
+                <td><a href="/students/${student.student_id}">${student.full_name}</a></td>
                 <td>${student.study_year}</td>
                 <td>${student.group.stream.stream_number}</td>
                 <td>${student.group.group_number}</td>

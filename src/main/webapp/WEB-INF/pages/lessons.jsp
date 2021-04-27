@@ -49,16 +49,15 @@
     </form>
     <table>
         <tr>
+            <th>Время</th>
+            <th>День недели</th>
             <th>Курс</th>
             <th>Аудитория</th>
-            <th>День недели</th>
-            <th>Время</th>
             <th>Преподаватель</th>
         </tr>
         <c:forEach var="lesson" items="${lessonsList}">
             <tr>
-                <td>${lesson.course.course_name}</td>
-                <td>${lesson.classroom.classroom_number}</td>
+                <td><a href="/lessons/${lesson.lesson_id}">${lesson.lesson_time}</a></td>
                 <c:if test="${lesson.week_day == 1}">
                     <td>Понедельник</td>
                 </c:if>
@@ -80,7 +79,8 @@
                 <c:if test="${lesson.week_day == 7}">
                     <td>Воскресенье</td>
                 </c:if>
-                <td>${lesson.lesson_time}</td>
+                <td>${lesson.course.course_name}</td>
+                <td>${lesson.classroom.classroom_number}</td>
                 <td>${lesson.course.teacher.full_name}</td>
             </tr>
         </c:forEach>

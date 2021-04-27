@@ -10,7 +10,7 @@ h1 {
     color: #f2faff;
 }
 
-#yearL, #numberL, #teacherL, #dayL {
+#yearL, #numberL, #teacherL, #dayL, #listenerL {
     font: bold 100% Georgia, serif;
     font-size: 1em;
     margin-bottom: 0.5em;

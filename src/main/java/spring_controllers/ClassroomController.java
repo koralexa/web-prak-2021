@@ -15,11 +15,13 @@ public class ClassroomController {
     private final ClassroomService classroomService = new ClassroomServiceImpl();
 
     @RequestMapping(value = "/classrooms", method = RequestMethod.POST)
-    public ModelAndView allClassrooms(@RequestParam(name = "min", required = false) Long min,
-                                      @RequestParam(name = "max", required = false) Long max) {
+    public ModelAndView allClassrooms(@RequestParam(name = "min", required = false) String min_s,
+                                      @RequestParam(name = "max", required = false) String max_s) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("classrooms");
         try {
+            Long min = min_s == null || min_s.equals("") ? null : Long.valueOf(min_s);
+            Long max = max_s == null || max_s.equals("") ? null : Long.valueOf(max_s);
             Collection<Classroom> classrooms_by_min_capacity = min == null
                     ? classroomService.getAllClassrooms()
                     : classroomService.getClassroomsByMinCapacity(min);
@@ -45,7 +47,9 @@ public class ClassroomController {
                 modelAndView.addObject("classroomsList", classrooms);
             }
         } catch (Exception e) {
-            modelAndView.setViewName("classroomsFilterError");
+            modelAndView.setViewName("error");
+            modelAndView.addObject("error", "Некорректные значения фильтров");
+            modelAndView.addObject("back", "/classrooms");
         }
         return modelAndView;
     }
@@ -77,7 +81,9 @@ public class ClassroomController {
         try {
             classroomService.insertClassroom(classroom);
         } catch (Exception e) {
-            modelAndView.setViewName("addClassroomError");
+            modelAndView.setViewName("error");
+            modelAndView.addObject("error", "Ошибка добавления аудитории");
+            modelAndView.addObject("back", "/classrooms");
         }
         return modelAndView;
     }
@@ -85,7 +91,69 @@ public class ClassroomController {
     @RequestMapping(value = "/classrooms/addClassroomError", method = RequestMethod.GET)
     public ModelAndView addClassroomErrorPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("addClassroomError");
+        modelAndView.setViewName("error");
+        modelAndView.addObject("error", "Ошибка добавления аудитории");
+        modelAndView.addObject("back", "/classrooms");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/classrooms/{id}", method = RequestMethod.GET)
+    public ModelAndView editPage(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("classroomInfo");
+        try {
+            Classroom classroom = classroomService.getClassroomById(id);
+            modelAndView.addObject("classroom", classroom);
+        } catch (Exception e) {
+            modelAndView.setViewName("redirect:/classrooms");
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/classrooms/{id}/delete", method = RequestMethod.GET)
+    public ModelAndView deleteClassroom(@PathVariable("id") Long id) throws SQLException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/classrooms");
+        try {
+            Classroom classroom = classroomService.getClassroomById(id);
+            classroomService.deleteClassroom(classroom);
+        } catch (Exception e) {
+            modelAndView.setViewName("error");
+            modelAndView.addObject("error", "Ошибка удаления аудитории");
+            modelAndView.addObject("back", "/classrooms/" + id.toString());
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/classrooms/{id}/edit", method = RequestMethod.GET)
+    public ModelAndView editClassroomPage(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("editClassroom");
+        try {
+            Classroom classroom = classroomService.getClassroomById(id);
+            modelAndView.addObject("classroom", classroom);
+        } catch (Exception e) {
+            modelAndView.setViewName("redirect:/classrooms/" + id.toString());
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/classrooms/{id}/edit", method = RequestMethod.POST)
+    public ModelAndView editClassroom(@RequestParam(name = "capacity", required = false) Long capacity,
+                                      @PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/classrooms/" + id.toString());
+        try {
+            Classroom classroom = classroomService.getClassroomById(id);
+            if (capacity != null) {
+                classroom.setCapacity(capacity);
+            }
+            classroomService.updateClassroom(classroom);
+        } catch (Exception e) {
+            modelAndView.setViewName("error");
+            modelAndView.addObject("error", "Ошибка редактирования аудитории");
+            modelAndView.addObject("back", "/classrooms/" + id.toString());
+        }
         return modelAndView;
     }
 }

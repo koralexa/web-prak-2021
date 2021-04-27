@@ -19,7 +19,7 @@
         <c:forEach var="teacher" items="${teachersList}">
             <tr>
                 <td>${teacher.teacher_id}</td>
-                <td>${teacher.full_name}</td>
+                <td><a href="/teachers/${teacher.teacher_id}">${teacher.full_name}</a></td>
             </tr>
         </c:forEach>
     </table>

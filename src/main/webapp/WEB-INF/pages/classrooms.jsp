@@ -26,7 +26,7 @@
     </tr>
     <c:forEach var="classroom" items="${classroomsList}">
         <tr>
-            <td>${classroom.classroom_number}</td>
+            <td><a href="/classrooms/${classroom.classroom_number}">${classroom.classroom_number}</a></td>
             <td>${classroom.capacity}</td>
         </tr>
     </c:forEach>
